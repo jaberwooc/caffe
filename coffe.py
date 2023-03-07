@@ -9,6 +9,11 @@ class Espresso(Beverage):
     def cost(self) -> float:
         return 60
 
+class  HouseBlend(Beverage):
+
+    def cost(self) -> float:
+        return 60
+
 
 
 class Condiments(Beverage):
@@ -38,15 +43,39 @@ def run(beverage: Beverage) :
         print(f"Subtotal: {beverage.cost()}", end="")
 
 
+class Wip(Condiments):
+
+    def cost(self) -> float:
+        return self.beverage.cost() + 15 
+
+
+def run(beverage: Beverage) :
+
+        print(f"Subtotal: {beverage.cost()}", end="")
 
 
 
 if __name__ == "__main__":
-    concret = Espresso()
-    concretda = Mocha(concret)
     start = True
     while(start):
-        if c =='Mocha':
-            run(concretda)
-        if c =='Wip':
-            run(concretda)
+        print('Select 1 Add Coffe')
+        print('Select 2 Print Tiket')
+        print('Select 3 Exit')
+        op = input()
+
+        if op == '1':
+            tipo = input('Select type coffe: ')
+            if tipo =='House Blend':
+                    concret = HouseBlend()
+            if tipo == 'Espresso':
+                    concret = Espresso()
+
+            agregar = True
+            while(agregar):     
+                c = input('What condiment ?')    
+                if c =='Mocha':
+                    concretda = Mocha(concret)
+                if c =='Wip':
+                    concretda = Wip(concret)
+                if c =='Ninguno':
+                    agregar=False
